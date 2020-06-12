@@ -1,0 +1,62 @@
+{
+  "name": "dodot",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "ng-mem2g": "node --max_old_space_size=4096 node_modules/@angular/cli/bin/ng",
+    "lint": "npm run ng-mem2g lint",
+    "test": "npm run ng-mem2g test -- --browsers=ChromeCustom --watch=false --progress=false",
+    "build": "npm run ng-mem2g build -- --prod --aot",
+    "version": "ts-node -O '{\"module\": \"commonjs\"}' git.version.ts",
+    "test-version": "cross-env echo $npm_package_version",
+    "prod": "npm run ng-mem2g build -- --deploy-url=http://domain.override/ -c=production --progress=false",
+    "start": "npm run ng-mem2g serve --source-map -- --port=4202 ",
+    "e2e": "npm run ng-mem2g e2e",
+    "update": "ncu -u && npm install typescript@'3.7.5' && npm install && npm audit fix",
+    "lint-fix": "prettier --write \"src/{app,environments,assets}/**/*{.ts,.html,.json,.scss}\"",
+    "modernizr": "modernizr -c modernizr-config.json -d src/modernizr.js",
+    "postinstall": "node ./node_modules/protractor/bin/webdriver-manager update",
+    "analyze": "npm run ng-mem2g build -- --prod --stats-json && webpack-bundle-analyzer dist/ng-operator/stats-es2015.json"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~9.1.11",
+    "@angular/common": "~9.1.11",
+    "@angular/compiler": "~9.1.11",
+    "@angular/core": "~9.1.11",
+    "@angular/forms": "~9.1.11",
+    "@angular/platform-browser": "~9.1.11",
+    "@angular/platform-browser-dynamic": "~9.1.11",
+    "@angular/router": "~9.1.11",
+    "commitizen": "^4.1.2",
+    "rxjs": "~6.5.4",
+    "tslib": "^1.10.0",
+    "zone.js": "~0.10.2"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "~0.901.8",
+    "@angular/cli": "~9.1.8",
+    "@angular/compiler-cli": "~9.1.11",
+    "@types/node": "^12.11.1",
+    "@types/jasmine": "~3.5.0",
+    "@types/jasminewd2": "~2.0.3",
+    "codelyzer": "^5.1.2",
+    "cz-conventional-changelog": "^3.1.0",
+    "jasmine-core": "~3.5.0",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "~5.0.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage-istanbul-reporter": "~2.1.0",
+    "karma-jasmine": "~3.0.1",
+    "karma-jasmine-html-reporter": "^1.4.2",
+    "protractor": "~7.0.0",
+    "ts-node": "~8.3.0",
+    "tslint": "~6.1.0",
+    "typescript": "~3.8.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
